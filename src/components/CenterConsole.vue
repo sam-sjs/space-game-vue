@@ -1,9 +1,9 @@
 <template>
   <div class="shipContainer">
-    <NavLinks/>
-    <NavLinks/>
-    <NavLinks/>
-    <NavLinks/>
+    <NavLinks direction="up" :position="sysBelow" prevLoc="sys_below_id"/>
+    <NavLinks direction="left" :position="sysRight" prevLoc="sys_right_id"/>
+    <NavLinks direction="right" :position="sysLeft" prevLoc="sys_left_id"/>
+    <NavLinks direction="down" :position="sysAbove" prevLoc="sys_above_id"/>
     <img src="@/assets/images/nav-dial.png" alt="Navigation Controls">
     <img src="@/assets/images/ship.png" class="ship" alt="Navigation Controls">
   </div>
@@ -14,6 +14,14 @@ import NavLinks from './NavLinks.vue'
 
 export default {
   name: 'CenterConsole',
+  data: function() {
+    return {
+      sysBelow: 'TOP',
+      sysRight: 'LEFT',
+      sysLeft: 'RIGHT',
+      sysAbove: 'BOTTOM'
+    };
+  },
   components: {
     NavLinks
   }
