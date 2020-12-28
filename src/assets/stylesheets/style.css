@@ -38,11 +38,3 @@ h1 {
 hr {
   margin: 0;
 }
-
-.shipContainer {
-  position: absolute;
-  height: 250px;
-  width: 250px;
-  top: calc(50% - 125px);
-  left: calc(50% - 125px);
-}

@@ -2,14 +2,13 @@
   <div id="app">
     <img v-if="hello" alt="Vue logo" src="./assets/logo.png">
     <HelloWorld v-if="hello" msg="Welcome to Your Vue.js App"/>
-    <div class="shipContainer">
-
-    </div>
+    <CenterConsole/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import CenterConsole from './components/CenterConsole.vue'
 
 export default {
   name: 'App',
@@ -19,7 +18,8 @@ export default {
     };
   },
   components: {
-    HelloWorld
+    HelloWorld,
+    CenterConsole
   }
 }
 </script>
