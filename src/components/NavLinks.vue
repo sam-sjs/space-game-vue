@@ -10,9 +10,16 @@ export default {
     direction: String,
     prevLoc: String
   },
+  // Come back to here, not working because no login
   methods: {
     navClick: function(prevLoc) {
-      console.log(prevLoc);
+      this.$http.get('http://localhost:3000/systems')
+        .then(function(response) {
+          console.log(prevLoc, response);
+        })
+        .catch(function(error) {
+          console.warn(error);
+        });
     }
   }
 }

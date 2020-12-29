@@ -1,25 +1,30 @@
 <template>
   <div id="app">
-    <img v-if="hello" alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld v-if="hello" msg="Welcome to Your Vue.js App"/>
-    <CenterConsole/>
+    <SplashPage v-if="splashShow"/>
+    <img v-if="helloShow" alt="Vue logo" src="./assets/logo.png">
+    <HelloWorld v-if="helloShow" msg="Welcome to Your Vue.js App"/>
+    <CenterConsole v-if="consoleShow"/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import CenterConsole from './components/CenterConsole.vue'
+import SplashPage from './components/SplashPage.vue'
 
 export default {
   name: 'App',
   data: function() {
     return {
-      hello: false
+      helloShow: false,
+      splashShow: false,
+      consoleShow: true
     };
   },
   components: {
     HelloWorld,
-    CenterConsole
+    CenterConsole,
+    SplashPage
   }
 }
 </script>
