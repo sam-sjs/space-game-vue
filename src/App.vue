@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <SplashPage v-if="splashShow"/>
+    <LoginPage v-if="loginShow"/>
     <img v-if="helloShow" alt="Vue logo" src="./assets/logo.png">
     <HelloWorld v-if="helloShow" msg="Welcome to Your Vue.js App"/>
     <CenterConsole v-if="consoleShow"/>
@@ -11,6 +12,7 @@
 import HelloWorld from './components/HelloWorld.vue'
 import CenterConsole from './components/CenterConsole.vue'
 import SplashPage from './components/SplashPage.vue'
+import LoginPage from './components/LoginPage.vue'
 
 export default {
   name: 'App',
@@ -18,13 +20,15 @@ export default {
     return {
       helloShow: false,
       splashShow: false,
-      consoleShow: true
+      consoleShow: true,
+      loginShow: true
     };
   },
   components: {
     HelloWorld,
     CenterConsole,
-    SplashPage
+    SplashPage,
+    LoginPage
   }
 }
 </script>
