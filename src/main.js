@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Vuex from './vuex'
 import axios from 'axios'
 
 Vue.prototype.$http = axios
@@ -12,5 +13,6 @@ if(accessToken) {
 Vue.config.productionTip = false
 
 new Vue({
+  Vuex,
   render: h => h(App),
 }).$mount('#app')

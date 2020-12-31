@@ -21,7 +21,7 @@ export default {
       helloShow: false,
       splashShow: false,
       consoleShow: true,
-      loginShow: true
+      loginShow: false
     };
   },
   components: {
