@@ -8,30 +8,21 @@
 export default {
   name: 'NavLinks',
   props: {
-    position: String,
     direction: String,
     previous: String
-  },
-  data: function() {
-    return {
-      above: 'ABOVE',
-      left: 'LEFT',
-      right: 'RIGHT',
-      below: 'BELOW'
-    };
   },
   computed: {
     guide: function() {
       // I hate this so much, try and find something tidier, where are ruby case statements(for god sake why is there no obvious way to return directly from the 'if' statement...)
       let system = '';
       if(this.direction === 'up') {
-        system = this.above;
+        system = this.$store.state.above;
       } else if (this.direction === 'left') {
-        system = this.left;
+        system = this.$store.state.left;
       } else if (this.direction === 'right') {
-        system = this.right;
+        system = this.$store.state.right;
       } else if (this.direction === 'down') {
-        system = this.below;
+        system = this.$store.state.below;
       }
       return system;
     }
@@ -40,12 +31,11 @@ export default {
     navClick: function(previous) {
       this.$http.post('http://localhost:3000/systems', null, {params: {prev_loc: previous}})
         .then((response) => {
-          console.log(response.data.sysBelow);
-          console.log(this.below);
-          this.above = response.data.sysAbove;
-          this.left = response.data.sysLeft;
-          this.right = response.data.sysRight;
-          this.below = response.data.sysBelow;
+          this.$store.commit('setSysName', response.data.systemName);
+          this.$store.commit('setAbove', response.data.sysAbove);
+          this.$store.commit('setLeft', response.data.sysLeft);
+          this.$store.commit('setRight', response.data.sysRight);
+          this.$store.commit('setBelow', response.data.sysBelow);
         })
         .catch(function(error) {
           console.warn(error);

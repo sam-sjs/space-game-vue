@@ -34,7 +34,6 @@ export default {
   },
   methods: {
     requestToken: function() {
-      // console.log('hi');
       const request = {'auth': {'email': this.email, 'password': this.password}};
       this.$http.post('http://localhost:3000/user_token', request)
            .then(function(response) {

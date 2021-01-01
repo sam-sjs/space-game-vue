@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Vuex from './vuex'
+import store from './vuex'
 import axios from 'axios'
 
 Vue.prototype.$http = axios
-const accessToken = localStorage.getItem('jwtToken');
 
+const accessToken = localStorage.getItem('jwtToken');
 if(accessToken) {
   Vue.prototype.$http.defaults.headers.common.Authorization = accessToken;
 }
@@ -13,6 +13,6 @@ if(accessToken) {
 Vue.config.productionTip = false
 
 new Vue({
-  Vuex,
+  store,
   render: h => h(App),
 }).$mount('#app')
