@@ -1,10 +1,12 @@
 <template>
   <div class="shipContainer">
-    <div>{{this.$store.state.systemName}}</div>
+    <!-- Navigation Controls -->
     <NavLinks direction="up" previous="sys_below_id"/>
     <NavLinks direction="left" previous="sys_right_id"/>
     <NavLinks direction="right" previous="sys_left_id"/>
     <NavLinks direction="down" previous="sys_above_id"/>
+
+    <!-- Central Console Images -->
     <img src="@/assets/images/nav-dial.png" alt="Navigation Controls">
     <img src="@/assets/images/ship.png" class="ship" alt="Navigation Controls">
   </div>

@@ -41,7 +41,7 @@ export default {
           console.warn(error);
         });
     }
-  }
+  },
 }
 </script>
 
