@@ -9,7 +9,11 @@ export default new Vuex.Store({
     above: '',
     left: '',
     right: '',
-    below: ''
+    below: '',
+    planet0: null,
+    planet1: null,
+    planet2: null,
+    planet3: null
   },
   // See if we can tidy this up with mapState
   mutations: {
@@ -27,6 +31,18 @@ export default new Vuex.Store({
     },
     setBelow: function(state, name) {
       state.below = name;
+    },
+    setPlanet0: function(state, obj) {
+      state.planet0 = obj;
+    },
+    setPlanet1: function(state, obj) {
+      state.planet1 = obj;
+    },
+    setPlanet2: function(state, obj) {
+      state.planet2 = obj;
+    },
+    setPlanet3: function(state, obj) {
+      state.planet3 = obj;
     }
   }
 })

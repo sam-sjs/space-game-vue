@@ -2,16 +2,22 @@
   <div>
     <div class="system"><h2>{{this.$store.state.systemName}}</h2></div>
     <CenterConsole/>
+    <PlanetSegment v-if="this.$store.state.planet0" passId="planet0"/>
+    <PlanetSegment v-if="this.$store.state.planet1" passId="planet1"/>
+    <PlanetSegment v-if="this.$store.state.planet2" passId="planet2"/>
+    <PlanetSegment v-if="this.$store.state.planet3" passId="planet3"/>
   </div>
 </template>
 
 <script>
 import CenterConsole from './CenterConsole.vue'
+import PlanetSegment from './PlanetSegment.vue'
 
 export default {
   name: 'GameView',
   components: {
-    CenterConsole
+    CenterConsole,
+    PlanetSegment
   }
 }
 </script>

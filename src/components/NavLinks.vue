@@ -31,11 +31,16 @@ export default {
     navClick: function(previous) {
       this.$http.post('http://localhost:3000/systems', null, {params: {prev_loc: previous}})
         .then((response) => {
+          console.log(response);
           this.$store.commit('setSysName', response.data.systemName);
           this.$store.commit('setAbove', response.data.sysAbove);
           this.$store.commit('setLeft', response.data.sysLeft);
           this.$store.commit('setRight', response.data.sysRight);
           this.$store.commit('setBelow', response.data.sysBelow);
+          this.$store.commit('setPlanet0', response.data.planet0);
+          this.$store.commit('setPlanet1', response.data.planet1);
+          this.$store.commit('setPlanet2', response.data.planet2);
+          this.$store.commit('setPlanet3', response.data.planet3);
         })
         .catch(function(error) {
           console.warn(error);
