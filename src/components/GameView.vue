@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="system"><h2>{{this.$store.state.systemName}}</h2></div>
+
     <CenterConsole/>
+
     <PlanetSegment v-if="this.$store.state.planet0" passId="planet0"/>
     <PlanetSegment v-if="this.$store.state.planet1" passId="planet1"/>
     <PlanetSegment v-if="this.$store.state.planet2" passId="planet2"/>

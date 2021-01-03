@@ -13,7 +13,17 @@ export default new Vuex.Store({
     planet0: null,
     planet1: null,
     planet2: null,
-    planet3: null
+    planet3: null,
+    userResources: {
+      currency: 0,
+      fuel: 0,
+      crystals: {
+        green: 0,
+        red: 0,
+        blue: 0,
+        purple: 0
+      }
+    }
   },
   // See if we can tidy this up with mapState
   mutations: {
@@ -43,6 +53,9 @@ export default new Vuex.Store({
     },
     setPlanet3: function(state, obj) {
       state.planet3 = obj;
+    },
+    userResources: function(state, obj) {
+      state.userResources = obj;
     }
   }
 })

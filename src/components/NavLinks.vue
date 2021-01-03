@@ -31,6 +31,7 @@ export default {
     navClick: function(previous) {
       this.$http.post('http://localhost:3000/systems', null, {params: {prev_loc: previous}})
         .then((response) => {
+          // Can probably just grab the entire systems/planets objects and push the entire thing into vuex state
           this.$store.commit('setSysName', response.data.systemName);
           this.$store.commit('setAbove', response.data.sysAbove);
           this.$store.commit('setLeft', response.data.sysLeft);
@@ -40,6 +41,7 @@ export default {
           this.$store.commit('setPlanet1', response.data.planet1);
           this.$store.commit('setPlanet2', response.data.planet2);
           this.$store.commit('setPlanet3', response.data.planet3);
+          this.$store.commit('userResources', response.data.userResources);
         })
         .catch(function(error) {
           console.warn(error);
