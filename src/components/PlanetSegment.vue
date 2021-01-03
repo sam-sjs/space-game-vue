@@ -7,6 +7,17 @@
     Planet size: {{this.$store.state[passId].size}}<br>
     Fuel Status: <strong><span :style="{color: fuelColor()}">{{this.$store.state[passId].fuelStatus}}</span></strong><br>
     Sensors: <strong><span :style="{color: sensorColor()}">{{this.$store.state[passId].sensorStatus}}</span></strong><br>
+    <div class="buttonContainer">
+      <div v-if="mineButton" class="mineContainer">
+        <button @click="buildMine()" type="button" class="buttons">Build Mine</button>
+        <div class="minePrice">500&#8353;</div>
+      </div>
+      <div v-if="investigateButton" class="investigateContainer">
+        <button @click="investigatePOI()" type="button" class="buttons">Investigate POI</button>
+        <div class="investigatePrice">-He3</div>
+      </div>
+      <button v-if="collectButton" @click="collectFuel()" type="button" class="buttons">Collect Fuel</button>
+    </div>
   </div>
 </template>
 
@@ -39,7 +50,39 @@ export default {
       } else if(sensor === 'Nothing of note') {
         return '#FDFD98';
       }
+    },
+    buildMine: function() {
+      this.$http.patch('http://localhost:3000/planets/' + this.$store.state[this.passId].id, null, {params: {type: 'mine'}})
+        .then((response) => {
+          this.$store.state[this.passId].fuelStatus = response.data.fuelStatus;
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    },
+    investigatePOI: function() {
+      this.$http.patch('http://localhost:3000/planets/' + this.$store.state[this.passId].id, null, {params: {type: 'investigate'}})
+        .then((response) => {
+          this.$store.state[this.passId].sensorStatus = response.data.sensorStatus;
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    },
+    collectFuel: function() {
+      this.$http.patch('http://localhost:3000/planets/' + this.$store.state[this.passId].id, null, {params: {type: 'collect'}})
+        .then((response) => {
+          this.$store.state[this.passId].fuelStatus = response.data.fuelStatus;
+        })
+        .catch((error) => {
+          console.log(error);
+        })
     }
+  },
+  computed: {
+    mineButton: function() {return this.$store.state[this.passId].fuelStatus === 'Helium-3 Available';},
+    investigateButton: function() {return this.$store.state[this.passId].sensorStatus === 'Point of interest found';},
+    collectButton: function() {return this.$store.state[this.passId].fuelStatus.substring(0, 4) === 'He-3'}
   }
 }
 </script>
@@ -87,5 +130,46 @@ export default {
   max-height: 250px;
   max-width: 250px;
   z-index: 1;
+}
+
+.buttonContainer {
+  display: flex;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.buttons {
+  position: relative;
+  background-color: #779ECB;
+  color: #2A508B;
+  font-size: 14pt;
+  cursor: pointer;
+  margin-right: 5px;
+  z-index: 1;
+}
+
+.buttons:hover {
+  background-color: #2A508B;
+  color: #779ECB;
+}
+
+.mineContainer {
+  height: 54px;
+}
+
+.minePrice {
+  position: relative;
+  color: #FE6B64;
+  left: 25px;
+}
+
+.investigateContainer {
+  height: 54px;
+}
+
+.investigatePrice {
+  position: relative;
+  color: #FE6B64;
+  left: 45px;
 }
 </style>

@@ -31,7 +31,6 @@ export default {
     navClick: function(previous) {
       this.$http.post('http://localhost:3000/systems', null, {params: {prev_loc: previous}})
         .then((response) => {
-          console.log(response);
           this.$store.commit('setSysName', response.data.systemName);
           this.$store.commit('setAbove', response.data.sysAbove);
           this.$store.commit('setLeft', response.data.sysLeft);
