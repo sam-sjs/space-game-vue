@@ -51,10 +51,14 @@ export default {
         return '#FDFD98';
       }
     },
+    // THESE SHOULD ALL BE MUTATIONS OF VUEX STATE!
     buildMine: function() {
       this.$http.patch('http://localhost:3000/planets/' + this.$store.state[this.passId].id, null, {params: {type: 'mine'}})
         .then((response) => {
+          this.$store.state.userResources.fuel = response.data.updateFuel;
+          this.$store.state.userResources.currency = response.data.updateCurrency;
           this.$store.state[this.passId].fuelStatus = response.data.fuelStatus;
+          this.$store.state.messaging = response.data.mineMsg;
         })
         .catch((error) => {
           console.log(error);
@@ -63,7 +67,11 @@ export default {
     investigatePOI: function() {
       this.$http.patch('http://localhost:3000/planets/' + this.$store.state[this.passId].id, null, {params: {type: 'investigate'}})
         .then((response) => {
+          this.$store.state.userResources.fuel = response.data.updateFuel;
+          this.$store.state.userResources.currency = response.data.updateCurrency;
+          this.$store.state.userResources.crystals = response.data.updateCrystals;
           this.$store.state[this.passId].sensorStatus = response.data.sensorStatus;
+          this.$store.state.messaging = response.data.investigateMsg;
         })
         .catch((error) => {
           console.log(error);
@@ -73,6 +81,8 @@ export default {
       this.$http.patch('http://localhost:3000/planets/' + this.$store.state[this.passId].id, null, {params: {type: 'collect'}})
         .then((response) => {
           this.$store.state[this.passId].fuelStatus = response.data.fuelStatus;
+          this.$store.state.messaging = response.data.collectMsg;
+          this.$store.state.userResources.fuel = response.data.updateFuel;
         })
         .catch((error) => {
           console.log(error);

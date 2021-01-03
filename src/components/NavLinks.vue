@@ -42,6 +42,7 @@ export default {
           this.$store.commit('setPlanet2', response.data.planet2);
           this.$store.commit('setPlanet3', response.data.planet3);
           this.$store.commit('userResources', response.data.userResources);
+          this.$store.state.messaging = '';
         })
         .catch(function(error) {
           console.warn(error);
